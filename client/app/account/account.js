@@ -15,5 +15,9 @@ angular.module('tripPlannerApp')
         templateUrl: 'app/account/settings/settings.html',
         controller: 'SettingsCtrl',
         authenticate: true
+      })
+      .when('/planTrip', {
+        templateUrl: 'app/account/planTrip/planTrip.html',
+        controller: 'PlanTripCtrl'
       });
   });
