@@ -6,7 +6,8 @@ angular.module('tripPlannerApp', [
   'ngSanitize',
   'ngRoute',
   'ui.bootstrap',
-  'google-maps'
+  'google-maps',
+  'ngGPlaces'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider

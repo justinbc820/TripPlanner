@@ -20,7 +20,6 @@
       <!-- injector:css -->
       <!-- endinjector -->
     <!-- endbuild -->
-
   </head>
   <body ng-app="tripPlannerApp">
     <!--[if lt IE 7]>
@@ -78,8 +77,9 @@
           <script src="components/navbar/navbar.controller.js"></script>
           <!-- endinjector -->
         <!-- endbuild -->
-        <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
+        <script src='http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false'></script>
         <script src='bower_components/lodash/dist/lodash.underscore.js'></script>
         <script src='bower_components/angular-google-maps/dist/angular-google-maps.js'></script>
+        <script src='bower_components/angularjs-google-places/dist/angularjs-google-places.min.js'></script>
 </body>
 </html>

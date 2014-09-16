@@ -5,6 +5,6 @@ angular.module('tripPlannerApp')
     $routeProvider
       .when('/planTrip', {
         templateUrl: 'app/planTrip/planTrip.html',
-        controller: 'PlantripCtrl'
+        controller: 'PlanTripCtrl'
       });
   });

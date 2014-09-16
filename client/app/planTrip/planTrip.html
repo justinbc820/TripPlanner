@@ -1,4 +1,8 @@
-<div class="map-container"> 
+<div class="map-container col-lg-9"> 
 	<google-map center="map.center" zoom="map.zoom" draggable="true"></google-map>
 </div>
+
+<div><b>{{details}}</b></div>
+<p ng-repeat="place in places">{{place.name}}</p>
+
 
