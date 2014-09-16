@@ -19,10 +19,21 @@ html, body {
 	height:100%;
 }
 
-// body {
-// 	min-height: 100%;
-// 	background:blue;
-// }
+.map-container {
+	height:100%;
+	margin-top:-50px;
+}
+
+#navbar {
+	height:50px;
+	margin:0;
+	background-color: rgba(0,0,0,0.80);
+	border-style: none;
+}
+
+#body-container {
+	height:100%;
+}
 
 // Component styles are injected through grunt
 // injector
