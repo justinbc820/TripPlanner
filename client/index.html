@@ -20,10 +20,7 @@
       <!-- injector:css -->
       <!-- endinjector -->
     <!-- endbuild -->
-    <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
-    <script src='/bower_components/lodash/dist/lodash.underscore.min.js'></script>
-    <script src='/bower_components/angular-google-maps/dist/angular-google-maps.js'></script>
-</script>
+
   </head>
   <body ng-app="tripPlannerApp">
     <!--[if lt IE 7]>
@@ -73,6 +70,8 @@
           <script src="app/admin/admin.js"></script>
           <script src="app/main/main.controller.js"></script>
           <script src="app/main/main.js"></script>
+          <script src="app/planTrip/planTrip.controller.js"></script>
+          <script src="app/planTrip/planTrip.js"></script>
           <script src="components/auth/auth.service.js"></script>
           <script src="components/auth/user.service.js"></script>
           <script src="components/modal/modal.service.js"></script>
@@ -80,5 +79,8 @@
           <script src="components/navbar/navbar.controller.js"></script>
           <!-- endinjector -->
         <!-- endbuild -->
+        <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
+        <script src='bower_components/lodash/dist/lodash.underscore.js'></script>
+        <script src='bower_components/angular-google-maps/dist/angular-google-maps.js'></script>
 </body>
 </html>
