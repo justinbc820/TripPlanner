@@ -2,6 +2,7 @@
 
 angular.module('tripPlannerApp')
   .controller('LoginCtrl', function ($scope, Auth, $location, $window) {
+    //for rapid testing, remove this line when deploying
     $scope.user = { email: "test@test.com", password: "test" };
     $scope.errors = {};
 
@@ -14,7 +15,7 @@ angular.module('tripPlannerApp')
           password: $scope.user.password
         })
         .then( function() {
-          // Logged in, redirect to home
+          // Logged in, redirect to planTrip
           $location.path('/planTrip');
         })
         .catch( function(err) {

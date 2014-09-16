@@ -21,14 +21,6 @@ html, body {
 
 .map-container {
 	height:100%;
-	margin-top:-50px;
-}
-
-#navbar {
-	height:50px;
-	margin:0;
-	background-color: rgba(0,0,0,0.80);
-	border-style: none;
 }
 
 #body-container {
@@ -42,4 +34,5 @@ html, body {
 @import 'main/main.scss';
 @import 'planTrip/planTrip.scss';
 @import 'modal/modal.scss';
+@import 'navbar/navbar.scss';
 // endinjector

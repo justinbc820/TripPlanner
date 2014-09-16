@@ -5,6 +5,10 @@ angular.module('tripPlannerApp')
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
+    },
+    {
+      'title':'Plan a Trip',
+      'link': '/planTrip'
     }];
 
     $scope.isCollapsed = true;
