@@ -2,7 +2,13 @@
 	<google-map center="map.center" zoom="map.zoom" draggable="true"></google-map>
 </div>
 
-<div><b>{{details}}</b></div>
-<p ng-repeat="place in places">{{place.name}}</p>
+<div class="col-lg-3" id="shelf">
+	<ul class="nav nav-tabs nav-justified" role="tablist">
+	  <li ng-show="true" ng-click="toggleView()" class="active"><a>Itinerary</a></li>
+	  <li ng-show="true" ng-click="toggleView()"><a>Search</a></li>
+	</ul>
+	<div><b>{{details}}</b></div>
+	<p ng-repeat="place in places">{{place.name}}</p>
+</div>
 
 

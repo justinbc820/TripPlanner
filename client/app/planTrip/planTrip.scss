@@ -1,11 +1,19 @@
 .angular-google-map-container { 
-	height: inherit; 
+	height: 100%; 
 }
 
 .angular-google-map {
-	height: inherit;
+	height: calc(100% - 50px);
 }
 
 .map-container {
-	padding:0;
+	padding:5px;
+	-moz-box-shadow:inset 0 0 10px #000000;
+	-webkit-box-shadow:inset 0 0 10px #000000;
+	box-shadow:inset 0 0 10px #000000;
+}
+
+#shelf {
+	height: calc(100% - 50px);
+	overflow:scroll;
 }
