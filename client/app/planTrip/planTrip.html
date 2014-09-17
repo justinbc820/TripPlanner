@@ -1,8 +1,8 @@
-<div class="map-container col-lg-9"> 
+<div class="map-container col-lg-9 col-md-9 col-sm-12 col-xs-12"> 
 	<google-map center="map.center" zoom="map.zoom" draggable="true"></google-map>
 </div>
 
-<div class="col-lg-3" id="shelf">
+<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" id="shelf">
 	<ul class="nav nav-tabs nav-justified" role="tablist">
 	  <li ng-click="toggleView('itinerary')" class="active"><a>Itinerary</a></li>
 	  <li ng-click="toggleView('search')"><a>Search</a></li>
@@ -13,7 +13,22 @@
 	</div>
 
 	<div id="search" ng-show="showSearch.value" ng-controller="SearchCtrl">
-		<p>{{message}}</p>
+		<input type="text" ng-autocomplete ng-model="autocomplete" options="options" details="details" placeholder="What do you want to find?" id="searchBox" />
+		<input type="text" ng-model="searchQuery"/>
+		<p>{{searchQuery}}</p>
+		<div id="place-card">
+			<h4>{{details.name}}</h4>
+			<h6>{{details.vicinity}}</h6>
+			<h6>Phone {{details.international_phone_number}}</h6>
+			<h6>Website <a href="{{details.website}}">{{details.website}}</a></h6>
+			<!-- <p>LatLng {{details.geometry.location}}</p>
+			<p>Place ID {{details.place_id}}</p>
+			<p>Photo {{details.photos[0]}}</p>
+			<p>Hours {{details.opening_hours}}</p>
+			<p>Icon <img src="{{details.icon}}" /></p> -->
+			<div>Details: {{details}}</div>
+			<div>Places: {{places}}</div>
+		</div>
 	</div>
 </div>
 
