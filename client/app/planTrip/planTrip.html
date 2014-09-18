@@ -14,8 +14,8 @@
 
 	<div id="search" ng-show="showSearch.value" ng-controller="SearchCtrl">
 		<input type="text" ng-autocomplete ng-model="autocomplete" options="options" details="details" placeholder="What do you want to find?" id="searchBox" />
+		<button ng-click="gMapsSearch(searchQuery)">Search</button>
 		<input type="text" ng-model="searchQuery"/>
-		<p>{{searchQuery}}</p>
 		<div id="place-card">
 			<h4>{{details.name}}</h4>
 			<h6>{{details.vicinity}}</h6>
