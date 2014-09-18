@@ -1,0 +1,41 @@
+#searchBox {
+	width:90%;
+	margin:10px 0;
+	height:40px;
+	font-size:20px;
+	float:left
+}
+
+::-webkit-input-placeholder {
+   text-align: center;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   text-align: center;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   text-align: center;  
+}
+
+:-ms-input-placeholder {  
+   text-align: center;  
+}
+
+#searchButton {
+	width:9%;
+	float:right;
+	margin:10px 0;
+	height:40px;
+}
+
+#place-card {
+	// border:1px solid black;
+	-moz-box-shadow: 0 0 25px -7px #000000;
+	-webkit-box-shadow: 0 0 25px -7px #000000;
+	box-shadow: 0 0 25px -7px #000000;
+	padding:5px;
+	padding-left:10px;
+	clear:both;
+	margin:15px 0;
+}
