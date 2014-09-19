@@ -3,7 +3,7 @@
 angular.module('tripPlannerApp')
   .controller('LoginCtrl', function ($scope, Auth, $location, $window) {
     //for rapid testing, remove this line when deploying
-    $scope.user = { email: "test@test.com", password: "test" };
+    $scope.user = { email: 'test@test.com', password: 'test' };
     $scope.errors = {};
 
     $scope.login = function(form) {

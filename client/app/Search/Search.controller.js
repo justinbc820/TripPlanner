@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('tripPlannerApp')
-  .controller('SearchCtrl', function ($scope, $rootScope, ToggleViewFactory, ngGPlacesAPI, $http) {
+  .controller('SearchCtrl', function ($scope, $rootScope, ToggleViewFactory, ngGPlacesAPI) {
   	$scope.showSearch = ToggleViewFactory.showSearch;
   	$scope.toggleView = ToggleViewFactory.toggleView;
 
-  	$scope.details;
-  	$scope.places;
+  	$scope.details = [];
+  	$scope.places = [];
     $scope.returnedPlaces = [];
 
     $scope.gMapsSearch = function(autocomplete) {

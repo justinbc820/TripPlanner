@@ -9,8 +9,8 @@ angular.module('tripPlannerApp')
         },
         zoom: 8
     };
-    $scope.details;
-    $scope.places;
+    $scope.details = [];
+    $scope.places = [];
 
     $scope.toggleView = ToggleViewFactory.toggleView;
 });
