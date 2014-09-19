@@ -21,10 +21,15 @@ angular.module('tripPlannerApp')
         }
     };
 
+    var getDetails = function(placeId) {
+      alert(placeId);
+    };
+
     // Public API here
     return {
       showSearch: showSearch,
       showItinerary: showItinerary,
-      toggleView: toggleView
+      toggleView: toggleView,
+      getDetails: getDetails
     };
   });

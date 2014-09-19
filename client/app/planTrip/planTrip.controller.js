@@ -13,4 +13,6 @@ angular.module('tripPlannerApp')
     $scope.places = [];
 
     $scope.toggleView = ToggleViewFactory.toggleView;
+
+    $scope.getDetails = ToggleViewFactory.getDetails;
 });
