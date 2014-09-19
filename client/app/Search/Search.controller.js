@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('tripPlannerApp')
-  .controller('SearchCtrl', function ($scope, ToggleView, ngGPlacesAPI, $http) {
-  	$scope.showSearch = ToggleView.showSearch;
-  	$scope.toggleView = ToggleView.toggleView;
+  .controller('SearchCtrl', function ($scope, $rootScope, ToggleViewFactory, ngGPlacesAPI, $http) {
+  	$scope.showSearch = ToggleViewFactory.showSearch;
+  	$scope.toggleView = ToggleViewFactory.toggleView;
 
   	$scope.details;
   	$scope.places;
@@ -15,11 +15,26 @@ angular.module('tripPlannerApp')
       //     function(data){
       //       $scope.places = data;
       //     });
-      ngGPlacesAPI.textSearch({'query':autocomplete}).then(
-          function(data){
-            $scope.places = data;
-          });
+      ngGPlacesAPI.textSearch({'query':autocomplete})
+          .then(function(data){
+              $scope.places = data;
+          })
+          .then(function() {
+            for(var i=0, n=$scope.places.length; i<n; i++) {
+              var id = i,
+                  coords = {
+                    latitude: $scope.places[i].geometry.location.k,
+                    longitude: $scope.places[i].geometry.location.B
+                  },
+                  newMarker = {
+                    id: id,
+                    coords: coords
+                  };
 
+              $scope.returnedPlaces.push(newMarker);
+            }
+            $rootScope.returnedPlaces = $scope.returnedPlaces;
+          });
     }; 
 
     $scope.placeDetails = function(place) {
@@ -30,5 +45,6 @@ angular.module('tripPlannerApp')
           function(data){
             $scope.details = data;
           });
-    } 
+    };
+
   });

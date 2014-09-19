@@ -1,6 +1,10 @@
 <div class="map-container col-lg-9 col-md-9 col-sm-12 col-xs-12"> 
 	<google-map center="map.center" zoom="map.zoom" draggable="true">
-
+		<markers
+			models="returnedPlaces"
+			coords="'coords'">
+			
+		</markers>
 	</google-map>
 </div>
 
@@ -17,7 +21,7 @@
 	<div id="search" ng-show="showSearch.value" ng-controller="SearchCtrl">
 		<form ng-submit="gMapsSearch(autocomplete)">
 		<input type="text" ng-autocomplete ng-model="autocomplete" options="options" details="details" placeholder="What do you want to find?" id="searchBox" />
-		<button ng-click="gMapsSearch(autocomplete)" id="searchButton"><span class="glyphicon glyphicon-search"></span></button>
+		<button type="submit" id="searchButton"><span class="glyphicon glyphicon-search"></span></button>
 		</form>
 
 		<div id="place-card" ng-repeat="place in places">

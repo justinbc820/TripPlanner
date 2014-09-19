@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Service: ToggleView', function () {
+describe('Service: ToggleViewFactory', function () {
 
   // load the service's module
   beforeEach(module('tripPlannerApp'));

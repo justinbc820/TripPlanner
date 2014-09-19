@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('tripPlannerApp')
-  .controller('ItineraryCtrl', function ($scope, ToggleView) {
+  .controller('ItineraryCtrl', function ($scope, ToggleViewFactory) {
   	$scope.message = "Itinerary";
-  	$scope.showItinerary = ToggleView.showItinerary;
+  	$scope.showItinerary = ToggleViewFactory.showItinerary;
   });
