@@ -1,18 +1,16 @@
 'use strict';
 
 angular.module('tripPlannerApp')
-  .controller('PlanTripCtrl', function ($scope, $rootScope, ngGPlacesAPI, ToggleViewFactory) {
+  .controller('PlanTripCtrl', function ($scope, ngGPlacesAPI, ToggleViewFactory) {
     $scope.map = {
         center: {
             latitude: 45,
             longitude: -73
         },
-        zoom: 8
+        zoom: 2
     };
-    $scope.details = [];
-    $scope.places = [];
 
     $scope.toggleView = ToggleViewFactory.toggleView;
-
+    $scope.returnedPlaces = ToggleViewFactory.returnedPlaces;
     $scope.getDetails = ToggleViewFactory.getDetails;
 });

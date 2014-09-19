@@ -1,7 +1,7 @@
 <div class="map-container col-lg-9 col-md-9 col-sm-12 col-xs-12"> 
-	<!-- <google-map center="map.center" zoom="map.zoom" draggable="true"> -->
+	<google-map center="map.center" zoom="map.zoom" draggable="true">
 		<!-- returnedPlaces is an array on the $rootScope -->
-		<!-- <marker ng-repeat="marker in returnedPlaces" idKey="marker.id" coords="marker.coords" fit="true" options="marker.options" click="marker.click">
+		<marker ng-repeat="marker in returnedPlaces" idKey="marker.id" coords="marker.coords" fit="true" options="marker.options" click="marker.click">
 			<window isIconVisibleOnClick="true">
 				<div id="window-div">
 					<h5>{{marker.name}}</h5>
@@ -11,7 +11,7 @@
 				</div>
 			</window>
 		</marker>
-	</google-map> -->
+	</google-map>
 </div>
 
 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" id="shelf">
@@ -30,17 +30,20 @@
 		<button type="submit" id="searchButton"><span class="glyphicon glyphicon-search"></span></button>
 		</form>
 
-		<div id="place-card" ng-repeat="place in places">
+		<div id="place-card" ng-repeat="place in returnedPlaces">
 			<h4 ng-click="placeDetails(place)">{{place.name}}</h4>
-			<p ng-show="place.formatted_address">{{place.formatted_address}}</p>
+			<p ng-show="place.details.formatted_address">Address: {{place.details.formatted_address}}</p>
 			<p ng-show="place.rating">Rating: {{place.rating}}</p>
+			<div ng-show="place.details.opening_hours">
+				Business Hours: 
+				<!-- {{place.details.opening_hours.periods}} -->
+				<p ng-repeat="day in place.details.opening_hours.periods">
+					{{day | OpeningHours}}
+				</p>
+			</div>
+			<!-- <p>{{place.details}}</p> -->
 			<button class="btn btn-sm btn-success">Add to Itinerary</button>
-			<button class="btn btn-sm btn-info" ng-click="getDetails(place.place_id)">More Info</button>
-			<!-- Need to build out place details by clicking on place name
-			It calls placeDetails and fetches details from Google's 
-			places API.  Then it returns JSON with lots of details
-			I need to create a new panel within the search portion that will
-			show the details of the selected place -->
+			<button class="btn btn-sm btn-info" ng-click="placeDetails(place)">More Info</button>
 		</div>
 	</div>
 </div>

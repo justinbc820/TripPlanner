@@ -31,11 +31,11 @@ html, body {
 // Component styles are injected through grunt
 // injector
 @import 'Itinerary/itinerary.scss';
-@import 'Search/search.scss';
 @import 'account/login/login.scss';
 @import 'admin/admin.scss';
 @import 'main/main.scss';
 @import 'planTrip/planTrip.scss';
+@import 'search/search.scss';
 @import 'modal/modal.scss';
 @import 'navbar/navbar.scss';
 // endinjector
