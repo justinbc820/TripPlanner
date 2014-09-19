@@ -1,9 +1,14 @@
 <div class="map-container col-lg-9 col-md-9 col-sm-12 col-xs-12"> 
 	<google-map center="map.center" zoom="map.zoom" draggable="true">
 		<!-- returnedPlaces is an array on the $rootScope -->
-		<marker ng-repeat="marker in returnedPlaces" idKey="marker.id" coords="marker.coords" fit="true">
+		<marker ng-repeat="marker in returnedPlaces" idKey="marker.id" coords="marker.coords" fit="true" options="marker.options" click="marker.click">
 			<window isIconVisibleOnClick="true">
-				<p>Hello</p>
+				<div id="window-div">
+					<h5>{{marker.name}}</h5>
+					<p>Rating: {{marker.rating}}</p>
+					<button class="btn btn-xs btn-success">Add</button>
+					<button class="btn btn-xs btn-info">Info</button>
+				</div>
 			</window>
 		</marker>
 		

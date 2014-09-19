@@ -17,3 +17,9 @@
 	height: calc(100% - 50px);
 	overflow:scroll;
 }
+
+#window-div {
+	h5, p {
+		margin:0 0 4px 0;
+	}
+}

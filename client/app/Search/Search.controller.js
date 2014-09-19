@@ -26,11 +26,11 @@ angular.module('tripPlannerApp')
                       latitude: $scope.places[i].geometry.location.k,
                       longitude: $scope.places[i].geometry.location.B
                     },
-                    show: true,
-                    templateUrl: 'planTrip/mapMarkers.html',
-                    templateParameter: {},
-                    icIconVisibleOnClick: true,
-                    closeClick: true
+                    name: $scope.places[i].name,
+                    rating: $scope.places[i].rating,
+                    options: {
+                      'title': $scope.places[i].name
+                    }
                   };
               $scope.returnedPlaces.push(newMarker);
             }
