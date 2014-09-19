@@ -10,27 +10,28 @@ angular.module('tripPlannerApp')
     $scope.returnedPlaces = [];
 
     $scope.gMapsSearch = function(autocomplete) {
-      // ngGPlacesAPI.setDefaults({types:['lodging']});
-      // ngGPlacesAPI.nearbySearch({latitude:-33.8665433, longitude:151.1956316}).then(
-      //     function(data){
-      //       $scope.places = data;
-      //     });
       ngGPlacesAPI.textSearch({'query':autocomplete})
           .then(function(data){
               $scope.places = data;
           })
           .then(function() {
+            //  refresh array with each new search
+            $scope.returnedPlaces = [];
+            //  loop through places, get lat/lng and assign an id. 
+            //  Push to $scope.returnedPlaces
             for(var i=0, n=$scope.places.length; i<n; i++) {
-              var id = i,
-                  coords = {
-                    latitude: $scope.places[i].geometry.location.k,
-                    longitude: $scope.places[i].geometry.location.B
-                  },
-                  newMarker = {
-                    id: id,
-                    coords: coords
+              var newMarker = {
+                    id: i,
+                    coords: {
+                      latitude: $scope.places[i].geometry.location.k,
+                      longitude: $scope.places[i].geometry.location.B
+                    },
+                    show: true,
+                    templateUrl: 'planTrip/mapMarkers.html',
+                    templateParameter: {},
+                    icIconVisibleOnClick: true,
+                    closeClick: true
                   };
-
               $scope.returnedPlaces.push(newMarker);
             }
             $rootScope.returnedPlaces = $scope.returnedPlaces;

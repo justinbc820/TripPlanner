@@ -1,10 +1,12 @@
 <div class="map-container col-lg-9 col-md-9 col-sm-12 col-xs-12"> 
 	<google-map center="map.center" zoom="map.zoom" draggable="true">
-		<markers
-			models="returnedPlaces"
-			coords="'coords'">
-			
-		</markers>
+		<!-- returnedPlaces is an array on the $rootScope -->
+		<marker ng-repeat="marker in returnedPlaces" idKey="marker.id" coords="marker.coords" fit="true">
+			<window isIconVisibleOnClick="true">
+				<p>Hello</p>
+			</window>
+		</marker>
+		
 	</google-map>
 </div>
 

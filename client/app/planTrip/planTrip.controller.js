@@ -9,8 +9,6 @@ angular.module('tripPlannerApp')
         },
         zoom: 8
     };
-    // $scope.returnedPlaces = SearchToMapsFactory.getPlaces();
-    // $scope.returnedPlaces = $rootScope.returnedPlaces;
     $scope.details;
     $scope.places;
 
