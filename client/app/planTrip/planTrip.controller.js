@@ -4,10 +4,10 @@ angular.module('tripPlannerApp')
   .controller('PlanTripCtrl', function ($scope, ngGPlacesAPI, ToggleViewFactory) {
     $scope.map = {
         center: {
-            latitude: 45,
-            longitude: -73
+            latitude: 15,
+            longitude: -15
         },
-        zoom: 2
+        zoom: 3
     };
 
     $scope.toggleView = ToggleViewFactory.toggleView;

@@ -17,7 +17,8 @@
     "lodash": "~2.4.1",
     "angular-google-maps": "~1.2.1",
     "angularjs-google-places": "~0.1.0",
-    "ngAutocomplete": "~1.0.0"
+    "ngAutocomplete": "~1.0.0",
+    "angular-ui-calendar": "latest"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",

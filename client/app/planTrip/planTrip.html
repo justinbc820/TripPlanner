@@ -1,17 +1,18 @@
 <div class="map-container col-lg-9 col-md-9 col-sm-12 col-xs-12"> 
-	<google-map center="map.center" zoom="map.zoom" draggable="true">
+	<!-- <google-map center="map.center" zoom="map.zoom" draggable="true"> -->
 		<!-- returnedPlaces is an array on the $rootScope -->
-		<marker ng-repeat="marker in returnedPlaces" idKey="marker.id" coords="marker.coords" fit="true" options="marker.options" click="marker.click">
+		<!-- <marker ng-repeat="marker in returnedPlaces" idKey="marker.id" coords="marker.coords" fit="true" options="marker.options" click="marker.click">
 			<window isIconVisibleOnClick="true">
 				<div id="window-div">
 					<h5>{{marker.name}}</h5>
 					<p>Rating: {{marker.rating}}</p>
-					<button class="btn btn-xs btn-success">Add</button>
-					<button class="btn btn-xs btn-info">Info</button>
+					<button class="btn btn-xs btn-success">Add to Itinerary</button>
+					<button class="btn btn-xs btn-info">More Info</button>
 				</div>
 			</window>
 		</marker>
-	</google-map>
+	</google-map> -->
+	<div ui-calendar ng-model="eventSources"></div>
 </div>
 
 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" id="shelf">
@@ -21,7 +22,7 @@
 	</ul>
 	
 	<div id="itinerary" ng-show="showItinerary.value" ng-controller="ItineraryCtrl">
-		<p>{{message}}</p>
+		
 	</div>
 
 	<div id="search" ng-show="showSearch.value" ng-controller="SearchCtrl">
@@ -30,10 +31,10 @@
 		<button type="submit" id="searchButton"><span class="glyphicon glyphicon-search"></span></button>
 		</form>
 
-		<div id="place-card" ng-repeat="place in returnedPlaces" class="clearfix">
+		<div class="place-card clearfix" ng-repeat="place in returnedPlaces">
 				<div id="button-container">
-					<button class="btn btn-sm btn-success" id="add-button">Add to Itinerary</button>
-					<button class="btn btn-sm btn-info" id="info-button" ng-click="placeDetails(place, [$index])">{{infoButtons[$index]}}</button>
+					<button class="btn btn-md btn-success" id="add-button" ng-click="addToItinerary(place)">Add to Itinerary</button>
+					<button class="btn btn-md btn-info info-button" ng-click="placeDetails(place, [$index])">{{infoButtons[$index]}}</button>
 				</div>
 				<h3 ng-click="placeDetails(place)">{{place.name}}</h3>
 				<p>

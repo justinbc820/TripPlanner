@@ -5,6 +5,7 @@ angular.module('tripPlannerApp')
   	$scope.showSearch = ToggleViewFactory.showSearch;
   	$scope.toggleView = ToggleViewFactory.toggleView;
 
+    $scope.returnedPlaces = ToggleViewFactory.returnedPlaces;
     $scope.details = ToggleViewFactory.details;
 
     $scope.infoButtons = {};
@@ -31,6 +32,7 @@ angular.module('tripPlannerApp')
       }
     };
 
-    $scope.returnedPlaces = ToggleViewFactory.returnedPlaces;
-
+    $scope.addToItinerary = function(place) {
+      ToggleViewFactory.addToItinerary(place);
+    }
   });

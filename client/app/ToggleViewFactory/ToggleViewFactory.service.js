@@ -76,6 +76,15 @@ angular.module('tripPlannerApp')
           });
     };
 
+    //////////////////////////////////////////////////////////////////////
+    // This is the section to add a place to the itinerary
+    //////////////////////////////////////////////////////////////////////
+    var itinerary = {};
+
+    var addToItinerary = function(place) {
+      itinerary[place.placeId] = place;
+    }
+
     // Public API here
     return {
       // Variables for Toggle View
@@ -88,6 +97,10 @@ angular.module('tripPlannerApp')
 
       // Variables for gMapsSearch
       gMapsSearch: gMapsSearch,
-      returnedPlaces: returnedPlaces
+      returnedPlaces: returnedPlaces,
+
+      // Variable for addToItinerary
+      itinerary: itinerary,
+      addToItinerary: addToItinerary
     };
   });
