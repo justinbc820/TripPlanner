@@ -26,7 +26,7 @@ angular.module('tripPlannerApp')
     };
 
     ////////////////////////////////////////////////////////////////////
-    // This is the section to conduct a gMapsTextSearch and return results to rootScope
+    // This is the section to conduct a gMapsTextSearch and return results
     ////////////////////////////////////////////////////////////////////
 
     var places = [],
@@ -77,13 +77,51 @@ angular.module('tripPlannerApp')
     };
 
     //////////////////////////////////////////////////////////////////////
-    // This is the section to add a place to the itinerary
+    // This is the section to interact with the itinerary
     //////////////////////////////////////////////////////////////////////
-    var itinerary = {};
+    var date = new Date(),
+        d = date.getDate(),
+        m = date.getMonth(),
+        y = date.getFullYear();
 
-    var addToItinerary = function(place) {
-      itinerary[place.placeId] = place;
-    }
+    var addRemoveEventSource = function(sources,source) {
+      var canAdd = 0;
+      angular.forEach(sources,function(value, key){
+        if(sources[key] === source){
+          sources.splice(key,1);
+          canAdd = 1;
+        }
+      });
+      if(canAdd === 0){
+        sources.push(source);
+      }
+    };
+
+    var events = [
+      {title: 'All Day Event',start: new Date(y, m, 1)},
+      {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
+      {id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
+      {id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
+      {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
+      {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
+    ];
+
+    /* add custom event*/
+    var addEvent = function(event) {
+      // events.push({
+      //   title: 'Open Sesame',
+      //   start: new Date(y, m, 28),
+      //   end: new Date(y, m, 29),
+      //   className: ['openSesame']
+      // });
+      console.log(event);
+    };
+    
+    /* remove event */
+    var removeEvent = function(index) {
+      events.splice(index,1);
+    };
+
 
     // Public API here
     return {
@@ -100,7 +138,8 @@ angular.module('tripPlannerApp')
       returnedPlaces: returnedPlaces,
 
       // Variable for addToItinerary
-      itinerary: itinerary,
-      addToItinerary: addToItinerary
+      events:events,
+      addEvent: addEvent,
+      removeEvent: removeEvent
     };
   });

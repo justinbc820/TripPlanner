@@ -19,18 +19,7 @@
 	        <button class="btn btn-success" ng-click="changeView('month', myCalendar)">Month</button>
 	    </div>
 	</div> -->
-	<div class="alert-success calAlert" ng-show="alertMessage != undefined && alertMessage != ''">
-	    <h4>{{alertMessage}}</h4>
-	</div>
-	<div class="calendar" ng-model="eventSources" calendar="myCalendar" config="uiConfig.calendar" ui-calendar="uiConfig.calendar"></div>
-	<ul class="unstyled">
-	    <li ng-repeat="e in events | filter:currentDate">
-	        <div class="alert alert-info">
-	            <a class="close" ng-click="remove($index)"><i class="icon-remove"></i></a>
-	            <b> {{e.title}}</b> - {{e.start | date:"MMM dd"}}
-	        </div>
-	    </li>
-	</ul>
+	<div ui-calendar="uiConfig.calendar" ng-model="eventSources"></div>
 </div>
 
 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" id="shelf">
@@ -51,17 +40,17 @@
 
 		<div class="place-card clearfix" ng-repeat="place in returnedPlaces">
 				<div id="button-container">
-					<button class="btn btn-md btn-success" id="add-button" ng-click="addToItinerary(place)">Add to Itinerary</button>
-					<button class="btn btn-md btn-info info-button" ng-click="placeDetails(place, [$index])">{{infoButtons[$index]}}</button>
+					<button class="btn btn-xs btn-success" id="add-button" ng-click="addEvent(place)">Add to Trip</button>
+					<button class="btn btn-xs btn-info info-button" ng-click="placeDetails(place, [$index])">{{infoButtons[$index]}}</button>
 				</div>
 				<h3 ng-click="placeDetails(place)">{{place.name}}</h3>
 				<p>
-					<b>Rating:</b> {{place.rating}}
+					<b>Rating:</b> {{place.rating}}<br>
 					<small><small><em>1 is poor and 5 is exceptional</em></small></small>
 				</p>
 				<div ng-show="showInfo[$index]">
 					<p>
-						<b>Price Level (0-4): </b> {{place.details.price_level}}
+						<b>Price Level (0-4): </b> {{place.details.price_level}}<br>
 						<small><small><span>0 is free, 4 is very expensive</span></small></small>
 					</p>
 					<b>Business Hours:</b> 

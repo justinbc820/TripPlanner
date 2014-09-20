@@ -32,7 +32,7 @@ angular.module('tripPlannerApp')
       }
     };
 
-    $scope.addToItinerary = function(place) {
-      ToggleViewFactory.addToItinerary(place);
-    }
+    $scope.addEvent = function(event) {
+      ToggleViewFactory.addEvent(event)
+    };
   });
