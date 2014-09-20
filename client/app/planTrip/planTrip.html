@@ -30,20 +30,32 @@
 		<button type="submit" id="searchButton"><span class="glyphicon glyphicon-search"></span></button>
 		</form>
 
-		<div id="place-card" ng-repeat="place in returnedPlaces">
-			<h4 ng-click="placeDetails(place)">{{place.name}}</h4>
-			<p ng-show="place.details.formatted_address">Address: {{place.details.formatted_address}}</p>
-			<p ng-show="place.rating">Rating: {{place.rating}}</p>
-			<div ng-show="place.details.opening_hours">
-				Business Hours: 
-				<!-- {{place.details.opening_hours.periods}} -->
-				<p ng-repeat="day in place.details.opening_hours.periods">
-					{{day | OpeningHours}}
+		<div id="place-card" ng-repeat="place in returnedPlaces" class="clearfix">
+				<div id="button-container">
+					<button class="btn btn-sm btn-success" id="add-button">Add to Itinerary</button>
+					<button class="btn btn-sm btn-info" id="info-button" ng-click="placeDetails(place, [$index])">{{infoButtons[$index]}}</button>
+				</div>
+				<h3 ng-click="placeDetails(place)">{{place.name}}</h3>
+				<p>
+					<b>Rating:</b> {{place.rating}}
+					<small><small><em>1 is poor and 5 is exceptional</em></small></small>
 				</p>
-			</div>
-			<!-- <p>{{place.details}}</p> -->
-			<button class="btn btn-sm btn-success">Add to Itinerary</button>
-			<button class="btn btn-sm btn-info" ng-click="placeDetails(place)">More Info</button>
+				<div ng-show="showInfo[$index]">
+					<p>
+						<b>Price Level (0-4): </b> {{place.details.price_level}}
+						<small><small><span>0 is free, 4 is very expensive</span></small></small>
+					</p>
+					<b>Business Hours:</b> 
+						<p class="business-hours" 
+							ng-repeat="day in place.details.opening_hours.periods">
+							{{day | OpeningHours}}
+						</p>
+					<br>
+					<p><b>Review: </b><em>"{{place.details.reviews[0].text}}"</em></p>
+					<p><b>Address: </b>{{place.details.formatted_address}}</p>
+					<p><b>Phone: </b>{{place.details.international_phone_number || place.details.formatted_phone_number}}</p>
+					<p><b>Website: </b><a href={{place.details.website}}>{{place.details.website}}</a></p>
+				</div>
 		</div>
 	</div>
 </div>

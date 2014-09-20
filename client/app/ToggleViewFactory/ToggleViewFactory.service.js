@@ -57,8 +57,8 @@ angular.module('tripPlannerApp')
                     placeId: places[i].place_id
                   };
               returnedPlaces.push(newMarker);
-            }
-          });
+            };
+          })
     };
 
     /////////////////////////////////////////////////////////////////////
