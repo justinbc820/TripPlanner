@@ -41,6 +41,7 @@
 	min-height:90px;
 	clear:both;
 	margin:15px 0;
+	overflow:visible;
 	h3 {
 		margin-top:0;
 	}
@@ -48,6 +49,7 @@
 		width:40%;
 		float:right;
 		margin-right:-2px;
+		position:relative;
 		.btn-sm {
 			padding:5px 7px;
 		}
@@ -55,6 +57,14 @@
 			width:100%;
 			float:right;
 			margin:4px 0;
+			overflow:visible;
+			.date-picker {
+				float: right;
+				z-index: 10;
+				position: absolute;
+				left: -128px;
+				top: 60px;
+			}
 		}
 	}
 }
