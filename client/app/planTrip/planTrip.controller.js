@@ -13,4 +13,6 @@ angular.module('tripPlannerApp')
     $scope.toggleView = ToggleViewFactory.toggleView;
     $scope.returnedPlaces = ToggleViewFactory.returnedPlaces;
     $scope.getDetails = ToggleViewFactory.getDetails;
+
+    $scope.mainView = ToggleViewFactory.mainView;
 });

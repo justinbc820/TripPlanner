@@ -1,17 +1,21 @@
 'use strict';
 
 angular.module('tripPlannerApp')
-  .controller('CalendarCtrl', function ($scope, ToggleViewFactory) {
-  	
+  .controller('CalendarCtrl', function ($scope, $rootScope, ToggleViewFactory) {
+  		
   	    //  Data contained in the ToggleViewFactory service for sharing data with SEARCH
   	    $scope.events = ToggleViewFactory.events;
   	    /* add and removes an event source of choice */
   	    $scope.addRemoveEventSource = ToggleViewFactory.addRemoveEventSource;
   	    /* add custom event*/
-  	    $scope.addEvent = ToggleViewFactory.addEvent;
+    	$scope.addEvent = ToggleViewFactory.addEventfunction;
   	    /* remove event */
-  	    $scope.removeEvent = ToggleViewFactory.removeEvent;
+  	    $scope.removeEvent = ToggleViewFactory.removeEvent;	
 
+		$rootScope.$on('newEvent', function() {
+	        $scope.events = ToggleViewFactory.events;
+	 		$scope.tripCalendar.fullCalendar('refetchEvents');   	
+	    });
 
   	    /* event source that calls a function on every view switch */
   	    $scope.eventsF = function (start, end, callback) {

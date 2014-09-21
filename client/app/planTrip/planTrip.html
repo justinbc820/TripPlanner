@@ -1,7 +1,7 @@
 <div class="map-container col-lg-9 col-md-9 col-sm-12 col-xs-12" ng-controller="CalendarCtrl"> 
-	<!-- <google-map center="map.center" zoom="map.zoom" draggable="true"> -->
+	<google-map center="map.center" zoom="map.zoom" draggable="true" ng-show="mainView.mapShow">
 		<!-- returnedPlaces is an array on the $rootScope -->
-		<!-- <marker ng-repeat="marker in returnedPlaces" idKey="marker.id" coords="marker.coords" fit="true" options="marker.options" click="marker.click">
+		<marker ng-repeat="marker in returnedPlaces" idKey="marker.id" coords="marker.coords" fit="true" options="marker.options" click="marker.click">
 			<window isIconVisibleOnClick="true">
 				<div id="window-div">
 					<h5>{{marker.name}}</h5>
@@ -11,28 +11,18 @@
 				</div>
 			</window>
 		</marker>
-	</google-map> -->
-	<!-- <div class="btn-toolbar">
-	    <div class="btn-group">
-	        <button class="btn btn-success" ng-click="changeView('agendaDay', myCalendar)">Day</button>
-	        <button class="btn btn-success" ng-click="changeView('agendaWeek', myCalendar)">Week</button>
-	        <button class="btn btn-success" ng-click="changeView('month', myCalendar)">Month</button>
-	    </div>
-	</div> -->
-	<div ui-calendar="uiConfig.calendar" ng-model="eventSources"></div>
+	</google-map>
+
+	<div ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="tripCalendar" ng-show="mainView.calendarShow"></div>
 </div>
 
 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" id="shelf">
 	<ul class="nav nav-tabs nav-justified" role="tablist">
-	  <li ng-click="toggleView('itinerary')" class="active"><a>Itinerary</a></li>
-	  <li ng-click="toggleView('search')"><a>Search</a></li>
+	  <li ng-click="toggleView('itinerary')" class="active"><a>Calendar</a></li>
+	  <li ng-click="toggleView('search')"><a>Map</a></li>
 	</ul>
 	
-	<div id="itinerary" ng-show="showItinerary.value" ng-controller="ItineraryCtrl">
-		
-	</div>
-
-	<div id="search" ng-show="showSearch.value" ng-controller="SearchCtrl">
+	<div id="search" ng-controller="SearchCtrl">
 		<form ng-submit="gMapsSearch(autocomplete)">
 		<input type="text" ng-autocomplete ng-model="autocomplete" options="options" details="details" placeholder="What do you want to find?" id="searchBox" />
 		<button type="submit" id="searchButton"><span class="glyphicon glyphicon-search"></span></button>
@@ -40,8 +30,11 @@
 
 		<div class="place-card clearfix" ng-repeat="place in returnedPlaces">
 				<div id="button-container">
-					<button class="btn btn-xs btn-success" id="add-button" ng-click="addEvent(place)">Add to Trip</button>
-					<button class="btn btn-xs btn-info info-button" ng-click="placeDetails(place, [$index])">{{infoButtons[$index]}}</button>
+					<button class="btn btn-xs btn-info info-button" ng-click="placeDetails(place, [$index])">{{infoButtons[$index] || "More Info"}}</button>
+					<button class="btn btn-xs btn-success" id="add-button" ng-click="toggleDatePicker($index)">
+						Add to Trip
+						<div ui-date class="date-picker" ui-date-format="DD, d MM, yy" ng-show="datePickers[$index]" ng-model="dateToAddTo.date" ng-required="true"></div>
+					</button>
 				</div>
 				<h3 ng-click="placeDetails(place)">{{place.name}}</h3>
 				<p>

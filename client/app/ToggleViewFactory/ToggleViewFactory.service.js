@@ -1,30 +1,27 @@
 'use strict';
 
 angular.module('tripPlannerApp')
-  .factory('ToggleViewFactory', function (ngGPlacesAPI) {
+  .factory('ToggleViewFactory', function (ngGPlacesAPI, $rootScope) {
  
     /////////////////////////////////////////////////////////////////
-    // This is the section to toggle between itinerary and search views
+    // This is the section to toggle between calendar and map views
     /////////////////////////////////////////////////////////////////
-
-    var showItinerary = {
-      value: false 
-    };
-    var showSearch = {
-      value: true
+    var mainView = {
+        mapShow: true,
+        calendarShow: true
     };
 
     var toggleView = function(button) {
         if(button === 'itinerary') {
-            showItinerary.value = true;
-            showSearch.value = false;
+            mainView.mapShow = false;
+            mainView.calendarShow = true;
         }
         else {
-            showItinerary.value = false;
-            showSearch.value = true;
+            mainView.mapShow = true;
+            mainView.calendarShow = false;
         }
     };
-
+    
     ////////////////////////////////////////////////////////////////////
     // This is the section to conduct a gMapsTextSearch and return results
     ////////////////////////////////////////////////////////////////////
@@ -104,31 +101,36 @@ angular.module('tripPlannerApp')
       {id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
       {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
       {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
-    ];
+    ]; 
 
     /* add custom event*/
-    var addEvent = function(event) {
+    var addEvent = function(event, date) {
       // events.push({
       //   title: 'Open Sesame',
       //   start: new Date(y, m, 28),
       //   end: new Date(y, m, 29),
       //   className: ['openSesame']
       // });
-      console.log(event);
+      if(event && date) {
+        events.push({
+          title: event.name,
+          start: date
+        });
+        $rootScope.$broadcast('newEvent', true);
+      }
     };
     
     /* remove event */
     var removeEvent = function(index) {
-      events.splice(index,1);
+      events.events.splice(index,1);
     };
 
 
     // Public API here
     return {
       // Variables for Toggle View
-      showSearch: showSearch,
-      showItinerary: showItinerary,
       toggleView: toggleView,
+      mainView: mainView,
 
       // Variables for placeDetails
       placeDetails: placeDetails,
@@ -138,7 +140,7 @@ angular.module('tripPlannerApp')
       returnedPlaces: returnedPlaces,
 
       // Variable for addToItinerary
-      events:events,
+      events: events,
       addEvent: addEvent,
       removeEvent: removeEvent
     };
