@@ -97,13 +97,18 @@ angular.module('tripPlannerApp')
     };
 
     var events = [
-      {title: 'All Day Event',start: new Date(y, m, 1)},
-      {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
-      {id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
-      {id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
-      {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
-      {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
-    ]; 
+      // {title: 'All Day Event',start: new Date(y, m, 1)},
+      // {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
+      // {id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
+      // {id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
+      // {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
+      // {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
+    ];
+
+    var polyline = {
+      path:[],
+      visible:true
+    };
 
     /* add custom event*/
     var addEvent = function(event, date) {
@@ -116,6 +121,7 @@ angular.module('tripPlannerApp')
       if(event && date) {
         events.push({
           title: event.name,
+          name: event.name,
           start: date,
           allDay: false,
           editable: true,
@@ -123,8 +129,14 @@ angular.module('tripPlannerApp')
           details: event.details,
           placeId: event.placeId,
           rating:event.rating,
-          icon:'/assets/images/itineraryEvent.png'
+          icon:'/assets/images/itineraryEvent.png',
+          options: {
+            zIndex:1000
+          }
         });
+        polyline.path.push(event.coords);
+        // console.log("polyline: ", polyline);
+        // console.log("polyline.path: ", polyline.path);
         $rootScope.$broadcast('newEvent', true);
       }
     };
@@ -147,6 +159,7 @@ angular.module('tripPlannerApp')
       // Variables for gMapsSearch
       gMapsSearch: gMapsSearch,
       returnedPlaces: returnedPlaces,
+      polyline: polyline,
 
       // Variable for addToItinerary
       events: events,

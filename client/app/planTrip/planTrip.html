@@ -10,7 +10,7 @@
 				</div>
 			</window>
 		</marker>
-		<marker ng-if="events" ng-repeat="marker in events" idKey="marker.placeId" coords="marker.coords" fit="true" options="marker.options" click="marker.click">
+		<marker ng-if="events" ng-repeat="marker in events" idKey="marker.placeId" coords="marker.coords" fit="true" icon="marker.icon" options="marker.options" click="marker.click">
 			<window isIconVisibleOnClick="true">
 				<div id="window-div">
 					<h5>{{marker.name}}</h5>
@@ -20,6 +20,7 @@
 				</div>
 			</window>
 		</marker>
+		<polyline ng-if="polyline" path="polyline.path" visible="polyline.visible" static="false"></polyline>
 	</google-map>
 	<div ng-controller="CalendarCtrl">
 		<div ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="tripCalendar" ng-show="mainView.calendarShow"></div>
