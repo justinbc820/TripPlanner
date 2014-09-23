@@ -29,7 +29,10 @@ angular.module('tripPlannerApp')
     };
 
     $scope.placeDetails = function(place, index) {
-      ToggleViewFactory.placeDetails(place);
+      //  If a call to Google's API hasn't already been made for details, then make the call
+      if(!ToggleViewFactory.returnedPlaces[index].details) {
+        ToggleViewFactory.placeDetails(place);
+      }
       if($scope.infoButtons[index] === "Less Info") {
         $scope.infoButtons[index] = "More Info";
         $scope.showInfo[index] = !$scope.showInfo[index];
@@ -40,8 +43,13 @@ angular.module('tripPlannerApp')
       }
     };
 
-    $scope.toggleDatePicker = function(index) {
+    $scope.toggleDatePicker = function(place, index) {
       $scope.currentEventIndex.index = index;
+      //  If a call to Google's API hasn't already been made for details, then make the call
+      if(!ToggleViewFactory.returnedPlaces[index].details) {
+        ToggleViewFactory.placeDetails(place);
+      }
+      
       if($scope.datePickers[index] === false) {
         $scope.datePickers[index] = true;
       }

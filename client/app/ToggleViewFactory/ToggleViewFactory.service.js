@@ -25,13 +25,15 @@ angular.module('tripPlannerApp')
     ////////////////////////////////////////////////////////////////////
     // This is the section to conduct a gMapsTextSearch and return results
     ////////////////////////////////////////////////////////////////////
-
+        // places is the initial returned values from Google
     var places = [],
+        // returned places is the reformatted values for GoogleMaps
         returnedPlaces = [];
 
     var gMapsSearch = function(autocomplete) {
       ngGPlacesAPI.textSearch({'query':autocomplete})
           .then(function(data){
+              places.length = 0;
               places = data;
           })
           .then(function() {
@@ -114,7 +116,14 @@ angular.module('tripPlannerApp')
       if(event && date) {
         events.push({
           title: event.name,
-          start: date
+          start: date,
+          allDay: false,
+          editable: true,
+          coords: event.coords,
+          details: event.details,
+          placeId: event.placeId,
+          rating:event.rating,
+          icon:'/assets/images/itineraryEvent.png'
         });
         $rootScope.$broadcast('newEvent', true);
       }

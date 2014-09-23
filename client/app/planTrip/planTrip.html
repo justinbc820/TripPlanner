@@ -1,7 +1,16 @@
-<div class="map-container col-lg-9 col-md-9 col-sm-12 col-xs-12" ng-controller="CalendarCtrl"> 
+<div class="map-container col-lg-9 col-md-9 col-sm-12 col-xs-12" ng-controller="PlanTripCtrl"> 
 	<google-map center="map.center" zoom="map.zoom" draggable="true" ng-show="mainView.mapShow">
-		<!-- returnedPlaces is an array on the $rootScope -->
-		<marker ng-repeat="marker in returnedPlaces" idKey="marker.id" coords="marker.coords" fit="true" options="marker.options" click="marker.click">
+		<marker ng-if="returnedPlaces" ng-repeat="marker in returnedPlaces" idKey="marker.id" coords="marker.coords" fit="true" options="marker.options" click="marker.click">
+			<window isIconVisibleOnClick="true">
+				<div id="window-div">
+					<h5>{{marker.name}}</h5>
+					<p>Rating: {{marker.rating}}</p>
+					<button class="btn btn-xs btn-success">Add to Itinerary</button>
+					<button class="btn btn-xs btn-info">More Info</button>
+				</div>
+			</window>
+		</marker>
+		<marker ng-if="events" ng-repeat="marker in events" idKey="marker.placeId" coords="marker.coords" fit="true" options="marker.options" click="marker.click">
 			<window isIconVisibleOnClick="true">
 				<div id="window-div">
 					<h5>{{marker.name}}</h5>
@@ -12,8 +21,9 @@
 			</window>
 		</marker>
 	</google-map>
-
-	<div ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="tripCalendar" ng-show="mainView.calendarShow"></div>
+	<div ng-controller="CalendarCtrl">
+		<div ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="tripCalendar" ng-show="mainView.calendarShow"></div>
+	</div>
 </div>
 
 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" id="shelf">
@@ -31,7 +41,7 @@
 		<div class="place-card clearfix" ng-repeat="place in returnedPlaces">
 				<div id="button-container">
 					<button class="btn btn-xs btn-info info-button" ng-click="placeDetails(place, [$index])">{{infoButtons[$index] || "More Info"}}</button>
-					<button class="btn btn-xs btn-success" id="add-button" ng-click="toggleDatePicker($index)">
+					<button class="btn btn-xs btn-success" id="add-button" ng-click="toggleDatePicker(place, [$index])">
 						Add to Trip
 						<div ui-date class="date-picker" ui-date-format="DD, d MM, yy" ng-show="datePickers[$index]" ng-model="dateToAddTo.date" ng-required="true"></div>
 					</button>
